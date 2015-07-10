@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="root (generated)" id="1436560046090-1">
+        <createSequence sequenceName="Profiles_id_seq"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-2">
+        <createSequence sequenceName="Registrations_id_seq"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-3">
+        <createSequence sequenceName="Settings_id_seq"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-4">
+        <createSequence sequenceName="TodoLists_id_seq"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-5">
+        <createSequence sequenceName="Todos_id_seq"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-6">
+        <createSequence sequenceName="Users_id_seq"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-7">
+        <createTable tableName="Profiles">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Profiles_pkey"/>
+            </column>
+            <column name="salutation" type="ENUM_PROFILES_SALUTATION(2147483647)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(15)"/>
+            <column name="firstname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="face" type="VARCHAR(10)"/>
+            <column name="website" type="VARCHAR(50)"/>
+            <column name="birthday" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UserId" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-8">
+        <createTable tableName="Registrations">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Registrations_pkey"/>
+            </column>
+            <column name="confirmhash" type="VARCHAR(255)"/>
+            <column name="lastpassword" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="lastconfirmation" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UserId" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-9">
+        <createTable tableName="Settings">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Settings_pkey"/>
+            </column>
+            <column defaultValue="'rgba(255, 223, 2, 0.8)'::character varying" name="color1" type="VARCHAR(30)"/>
+            <column defaultValue="'rgba(0, 128, 0, 0.8)'::character varying" name="color2" type="VARCHAR(30)"/>
+            <column defaultValue="'rgba(0, 90, 255, 0.8)'::character varying" name="color3" type="VARCHAR(30)"/>
+            <column defaultValue="'rgba(0, 0, 0, 0.8)'::character varying" name="color4" type="VARCHAR(30)"/>
+            <column defaultValue="'rgba(255, 0, 0, 0.8)'::character varying" name="color5" type="VARCHAR(30)"/>
+            <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UserId" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-10">
+        <createTable tableName="TodoLists">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="TodoLists_pkey"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column defaultValue="'default'::&quot;enum_TodoLists_type&quot;" name="type" type="ENUM_TODOLISTS_TYPE(2147483647)"/>
+            <column name="name" type="VARCHAR(55)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deletedAt" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="UserId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-11">
+        <createTable tableName="Todos">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Todos_pkey"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="1" name="order" type="INT"/>
+            <column name="repeat" type="BOOL"/>
+            <column name="repeatWeekly" type="VARCHAR(255)"/>
+            <column name="repeatMonthly" type="VARCHAR(255)"/>
+            <column name="repeatYearly" type="VARCHAR(255)"/>
+            <column defaultValueBoolean="false" name="finished" type="BOOL"/>
+            <column defaultValue="'color1'::&quot;enum_Todos_color&quot;" name="color" type="ENUM_TODOS_COLOR(2147483647)"/>
+            <column name="alarm" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deletedAt" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="TodoListId" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-12">
+        <createTable tableName="Users">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="Users_pkey"/>
+            </column>
+            <column defaultValue="'user'::&quot;enum_Users_group&quot;" name="group" type="ENUM_USERS_GROUP(2147483647)"/>
+            <column name="DefaultTodoListId" type="INT"/>
+            <column name="email" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="confirmed" type="INT"/>
+            <column name="banned" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedAt" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deletedAt" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-13">
+        <addUniqueConstraint columnNames="confirmhash" constraintName="Registrations_confirmhash_key" tableName="Registrations"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-14">
+        <addUniqueConstraint columnNames="email" constraintName="Users_email_key" tableName="Users"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-15">
+        <createIndex indexName="todo_lists_name__user_id" tableName="TodoLists" unique="true">
+            <column name="name"/>
+            <column name="UserId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-16">
+        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="Profiles" constraintName="Profiles_UserId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-17">
+        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="Registrations" constraintName="Registrations_UserId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-18">
+        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="Settings" constraintName="Settings_UserId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-19">
+        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="TodoLists" constraintName="TodoLists_UserId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1436560046090-20">
+        <addForeignKeyConstraint baseColumnNames="TodoListId" baseTableName="Todos" constraintName="Todos_TodoListId_fkey" deferrable="false" initiallyDeferred="false" onDelete="SET NULL" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="TodoLists"/>
+    </changeSet>
+</databaseChangeLog>
