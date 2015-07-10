@@ -48,9 +48,9 @@ docker run --name liquibase --link wanamudb:db \
 
  -v $LIQUIBASE_CHANGELOGS:/changelogs \
  
- -e CHANGELOG_FILE=$LB_CHANGELOG_FILE \
+ -e CHANGELOG_FILE=/changelogs/changelog.xml \
  
- -e DB_NAME=wanamu --rm -it liquibase update
+ -e LB_DB_NAME=wanamu --rm -it liquibase update
 
 ## Explanantion
 <table>
@@ -58,11 +58,6 @@ docker run --name liquibase --link wanamudb:db \
   <td>$LIQUIBASE_CHANGELOGS</td>
   <td>Changelog folder on the host</td>
  </tr>
- <tr>
-  <td>$LB_CHANGELOG_FILE</td>
-  <td>Changelog file on the host that should be applied to the database. This file should reside in /changelogs inside the container and must be in $LB_CHANGELOGS folder</td>
- </tr>
-
 </table>
 
 # See
