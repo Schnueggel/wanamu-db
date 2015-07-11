@@ -2,64 +2,26 @@
 
 # Docker build command
 
-docker build -t wanamudb .
+docker build -t wanamu/wanamudb .
 
 # Docker run command
+Use the start.sh script to start the database
 
-docker run --name wanamudb \
--p 5432:5432  \
--v POSTGRES_DATA:/var/lib/postgresql/data \
--e POSTGRES_PASSWORD=$POSTGRES_PASSWORD   \
--e POSTGRES_USER=$POSTGRES_USER \
--e DB_USER=$WU_DB_USER
--e DB_PASS=$WU_DB_PASS
--e DB_NAME=$WU_DB_NAME
--d wanamudb
+Usage: [postgres super user] [postgres super password] [wanamudb user] [wanamudb password] [wanamudb image]
 
+Example:./start.sh postgres postgres  wanamu wanamu wanamu/wanamudb
 
-## Explanation
-<table>
- <tr>
-  <td>POSTGRES_DATA</td>
-  <td>Host Folder to map the postgres data from inside the container</td>
- </tr>
- <tr>
-  <td>POSTGRES_USER</td>
-  <td>Superuser of the db with create and drop permission</td>
- </tr>
-  <tr>
-   <td>POSTGRES_PASSWORD</td>
-   <td>Password of superuser</td>
-  </tr>
-   <tr>
-     <td>DB_USER, DB_PASS, DB_NAME</td>
-     <td>Name of the wanamu database, user and password. Defaults to wanamu dont use this in production</td>
-    </tr>
-</table>
 
 # Update Wanamu DB
- To update the scheme of the wanamu db change the changelog.sql file
- The use our docker-liquibase image to update the database
- 
- https://bitbucket.org/schnueggel/docker-liquibase
- 
+To update the scheme of the wanamu db change the changelog1.xml file or add a new log file
+The use our docker-liquibase image to update the database
 
-docker run --name liquibase --link wanamudb:db \
+see:
 
- -v $LIQUIBASE_CHANGELOGS:/changelogs \
- 
- -e CHANGELOG_FILE=/changelogs/changelog.xml \
- 
- -e LB_DB_NAME=wanamu --rm -it liquibase update
+https://bitbucket.org/schnueggel/docker-liquibase
+# Dump data
 
-## Explanantion
-<table>
- <tr>
-  <td>$LIQUIBASE_CHANGELOGS</td>
-  <td>Changelog folder on the host</td>
- </tr>
-</table>
-
+Use the dump script to make a data dump
 # See
 
 Postgres Docker - https://registry.hub.docker.com/_/postgres/

@@ -19,11 +19,12 @@
         <createSequence sequenceName="Users_id_seq"/>
     </changeSet>
     <changeSet author="root (generated)" id="1436560046090-7">
+        <sql>CREATE TYPE ENUM_PROFILE_SALUTATION AS ENUM('mr','mrs','human','neutrum')</sql>
         <createTable tableName="Profiles">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="Profiles_pkey"/>
             </column>
-            <column name="salutation" type="ENUM_PROFILES_SALUTATION(2147483647)">
+            <column name="salutation" type="ENUM_PROFILE_SALUTATION">
                 <constraints nullable="false"/>
             </column>
             <column name="title" type="VARCHAR(15)"/>
@@ -82,12 +83,13 @@
         </createTable>
     </changeSet>
     <changeSet author="root (generated)" id="1436560046090-10">
+        <sql>CREATE TYPE ENUM_TODOLIST_TYPE AS ENUM ('custom', 'default')</sql>
         <createTable tableName="TodoLists">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="TodoLists_pkey"/>
             </column>
             <column name="description" type="TEXT"/>
-            <column defaultValue="'default'::&quot;enum_TodoLists_type&quot;" name="type" type="ENUM_TODOLISTS_TYPE"/>
+            <column defaultValue="default" name="type" type="ENUM_TODOLIST_TYPE"/>
             <column name="name" type="VARCHAR(55)">
                 <constraints nullable="false"/>
             </column>
@@ -104,6 +106,7 @@
         </createTable>
     </changeSet>
     <changeSet author="root (generated)" id="1436560046090-11">
+        <sql>CREATE DOMAIN ENUM_TODOS_COLOR VARCHAR(10) CHECK (VALUE IN ('color1','color2','color3','color4', 'color5'))</sql>
         <createTable tableName="Todos">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="Todos_pkey"/>
@@ -114,11 +117,11 @@
             </column>
             <column defaultValueNumeric="1" name="order" type="INT"/>
             <column name="repeat" type="BOOL"/>
-            <column name="repeatWeekly" type="VARCHAR(255)"/>
-            <column name="repeatMonthly" type="VARCHAR(255)"/>
-            <column name="repeatYearly" type="VARCHAR(255)"/>
+            <column name="repeatWeekly" type="VARCHAR_ARRAY_2"/>
+            <column name="repeatMonthly" type="VARCHAR_ARRAY_2"/>
+            <column name="repeatYearly" type="VARCHAR_ARRAY_3"/>
             <column defaultValueBoolean="false" name="finished" type="BOOL"/>
-            <column defaultValue="color1" name="color" type="ENUM('color1','color2','color3','color4', 'color5')"/>
+            <column defaultValue="color1" name="color" type="ENUM_TODOS_COLOR"/>
             <column name="alarm" type="TIMESTAMP WITH TIME ZONE"/>
             <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">
                 <constraints nullable="false"/>
@@ -129,18 +132,19 @@
             <column name="deletedAt" type="TIMESTAMP WITH TIME ZONE"/>
             <column name="TodoListId" type="INT"/>
         </createTable>
+        <modifySql dbms="postgresql">
+            <replace replace="VARCHAR_ARRAY_2" with="character varying(2)[]"/>
+            <replace replace="VARCHAR_ARRAY_3" with="character varying(3)[]"/>
+        </modifySql>
     </changeSet>
     <changeSet author="root (generated)" id="1436560046090-12">
-        <sql>CREATE TYPE ENUM_USERS_GROUP AS ENUM ('user','admin')</sql>
+        <sql>CREATE TYPE ENUM_USERS_GROUP AS ENUM('user','admin')</sql>
         <createTable tableName="Users">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="Users_pkey"/>
             </column>
-            <column defaultValue="'user':&quot;ENUM_USERS_GROUP&quot;" name="group" type="ENUM_USERS_GROUP"/>
+            <column defaultValue="user" name="group" type="ENUM_USERS_GROUP"/>
             <column name="DefaultTodoListId" type="INT"/>
-            <column name="email" type="VARCHAR(40)">
-                <constraints nullable="false"/>
-            </column>
             <column name="email" type="VARCHAR(40)">
                 <constraints nullable="false"/>
             </column>
