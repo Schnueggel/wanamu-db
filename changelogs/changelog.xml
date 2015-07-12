@@ -148,7 +148,7 @@
             <column name="email" type="VARCHAR(40)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="BYTEA">
+            <column name="password" type="VARCHAR(40)">
                 <constraints nullable="false"/>
             </column>
             <column name="facebookId" type="varchar(100)"/>
