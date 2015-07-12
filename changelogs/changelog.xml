@@ -148,10 +148,10 @@
             <column name="email" type="VARCHAR(40)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="VARCHAR(40)">
+            <column name="password" type="VARCHAR(70)">
                 <constraints nullable="false"/>
             </column>
-            <column name="facebookId" type="varchar(100)"/>
+            <column name="facebookId" type="VARCHAR(100)"/>
             <column defaultValueNumeric="0" name="confirmed" type="INT"/>
             <column name="banned" type="TIMESTAMP WITH TIME ZONE"/>
             <column name="createdAt" type="TIMESTAMP WITH TIME ZONE">

@@ -11,4 +11,12 @@ EOSQL
 } && { gosu postgres postgres --single -jE <<-EOSQL
     CREATE DATABASE "$DB_NAME" WITH OWNER="$DB_USER" TEMPLATE=template0 ENCODING='$DB_ENCODING';
 EOSQL
+} && { gosu postgres postgres --single -jE <<-EOSQL
+    GRANT ALL PRIVILEGES ON DATABASE "$DB_NAME" TO "$DB_USER";
+EOSQL
+} && { gosu postgres postgres --single -jE $DB_NAME <<-EOSQL
+    ALTER DEFAULT PRIVILEGES
+    IN SCHEMA public
+    GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO "$DB_USER";
+EOSQL
 }
