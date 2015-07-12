@@ -164,8 +164,11 @@
         </createTable>
     </changeSet>
 
-    <changeSet author="root (generated)" id="friends">
-        <createTable tableName="friends">
+    <changeSet author="root (generated)" id="Friends">
+        <createTable tableName="Friends">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="friends_key"/>
+            </column>
             <column defaultValueNumeric="false" name="accepted" type="BOOL"/>
             <column defaultValueNumeric="false" name="invisible" type="BOOL"/>
             <column name="FriendId" type="INT">
@@ -197,19 +200,15 @@
             <column name="UserId"/>
         </createIndex>
     </changeSet>
-
-    <changeSet author="christian.steinmann" id="friends_primary_key">
-        <addPrimaryKey columnNames="FriendId, UserId"
-                       constraintName="friends_primary_key"
-                       schemaName="public"
-                       tableName="friends"/>
+    <changeSet author="root (generated)" id="friends_user_friend_key-14">
+        <addUniqueConstraint columnNames="UserId,FriendId" constraintName="friends_UserId_FriendId_key" tableName="Friends"/>
     </changeSet>
 
-    <changeSet author="root (generated)" id="friends_user">
-        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="friends" constraintName="friends_UserId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
+    <changeSet author="root (generated)" id="Friends_user">
+        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="Friends" constraintName="friends_UserId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
     </changeSet>
-    <changeSet author="root (generated)" id="friends_friend">
-        <addForeignKeyConstraint baseColumnNames="FriendId" baseTableName="friends" constraintName="friends_FriendId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
+    <changeSet author="root (generated)" id="Friends_friend">
+        <addForeignKeyConstraint baseColumnNames="FriendId" baseTableName="Friends" constraintName="friends_FriendId_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="Users"/>
     </changeSet>
 
     <changeSet author="root (generated)" id="1436560046090-16">
