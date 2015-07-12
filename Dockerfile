@@ -1,9 +1,9 @@
 #@IgnoreInspection BashAddShebang
 FROM postgres
 
-RUN mkdir /var/pgdumps
-VOLUME /var/pgdumps
-ENV PGDUMPS=/var/pgdumps
+RUN mkdir /var/lib/postgresql/dump
+VOLUME /var/lib/postgresql/dump
+ENV PGDUMPS=/var/lib/postgresql/dump
 
 RUN mkdir /scripts
 
