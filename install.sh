@@ -74,11 +74,20 @@ docker build -t $IMAGE_NAME $CURRENT_DIR
 #############################################################################################################
 echo "Write Installdir"
 
-if [ -d $INSTALL_DIR ]; then
-    rm -rf $INSTALL_DIR
+#############################################################################################################
+# Setup install dir and write files
+#############################################################################################################
+if [ ! -d $INSTALL_DIR ]; then
+    mkdir $INSTALL_DIR
 fi
 
-mkdir $INSTALL_DIR
+if [ -f $CONTAINER_FILE ]; then
+    rm $CONTAINER_FILE
+fi
+
+if [ -f $IMAGE_FILE ]; then
+    rm $IMAGE_FILE
+fi
 
 echo $CONTAINER_NAME >> $CONTAINER_FILE
 echo $IMAGE_NAME >> $IMAGE_FILE
