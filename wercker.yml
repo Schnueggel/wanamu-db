@@ -13,9 +13,7 @@ build:
           name: start
           code: |
             chmod +x ./scripts/initdb.sh
-            ls -a /
-            ls -a .
-            su - postgres -c 'whoami'
+            ./scripts/initdb.sh
     - script:
       name: test db
       code: |
