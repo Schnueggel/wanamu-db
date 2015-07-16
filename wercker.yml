@@ -7,7 +7,7 @@ build:
     - script:
         name: make dirs
         code: |
-          echo $PG_MAJOR
+          apt-get install openssh-client
           mkdir /var/lib/postgresql/dump
           cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
     - script:
@@ -22,8 +22,6 @@ deploy:
         name: stop application
         code: |
           export
-          ls -a $WERCKER_SOURCE_DIR
-          ls -a $WERCKER_CACHE_DIR
           apt-get install openssh-client
           ls -a /
           chmod +x ./test.sh
