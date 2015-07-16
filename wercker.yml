@@ -18,6 +18,7 @@ deploy:
     - script:
         name: stop application
         code: |
+          export
           ls -a $WERCKER_ROOT
           apt-get install openssh-client
           ssh-agent -s
