@@ -1,4 +1,5 @@
-box: postgres
+box:
+  id: postgres
   env:
     PGPASSWORD: $DB_PASSWORD
 build:
@@ -8,7 +9,8 @@ build:
       code: |
         mkdir /var/lib/postgresql/dump
         mkdir /scripts
-        cp scripts/initdb.sh /docker-entrypoint-initdb.d/
+        cp ./scripts/dump.sh /scripts/
+        cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
     - script:
       name: test db
       code: |
