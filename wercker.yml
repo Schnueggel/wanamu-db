@@ -21,7 +21,9 @@ deploy:
     - script:
         name: stop application
         code: |
-          ls -a .
+          export
+          apt-get install openssh-client
+          ls -a /
           chmod +x ./test.sh
           ./test.sh
 
