@@ -3,7 +3,7 @@ box:
   env:
     PGPASSWORD: $DB_PASSWORD
 steps:
-  - chase/add-ssh-key@1.0.
+  - chase/add-ssh-key@1.0.3
 build:
   steps:
     - script:
