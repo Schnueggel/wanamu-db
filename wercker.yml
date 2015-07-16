@@ -12,9 +12,9 @@ build:
     - script:
           name: start
           code: |
-            su postgres
+            chmod +x ./scripts/initdb.sh
             whoami
-            ./scripts/initdb.sh
+            su -c './scripts/initdb.sh' - postgres
 
     - script:
       name: test db
