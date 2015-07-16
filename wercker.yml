@@ -15,7 +15,7 @@ build:
             chmod +x ./scripts/initdb.sh
             ls -a /
             ls -a .
-            su - postgres -c './scripts/initdb.sh'
+            su - postgres -c 'whoami'
     - script:
       name: test db
       code: |
