@@ -1,4 +1,5 @@
 box: postgres
+build:
   steps:
     - script:
       name: make dirs
