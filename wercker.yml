@@ -20,8 +20,8 @@ deploy:
     - script:
         name: stop application
         code: |
-          ls -a $WERCKER_DOCKER_PATH
-          apt-get update
-          apt-get install ssh openssh-server
+          ls -a $WERCKER_ROOT
+          apt-get --yes --force-yes update
+          apt-get --yes --force-yes install ssh openssh-server
           ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST
 
