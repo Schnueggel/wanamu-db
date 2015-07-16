@@ -14,8 +14,7 @@ build:
           code: |
             chmod +x ./scripts/initdb.sh
             whoami
-            su -c './scripts/initdb.sh' - postgres
-
+            su ./scripts/initdb.sh - postgres
     - script:
       name: test db
       code: |
