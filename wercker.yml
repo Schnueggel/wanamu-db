@@ -20,7 +20,8 @@ deploy:
     - script:
         name: stop application
         code: |
-          export
+          ls -a $WERCKER_DOCKER_PATH
+          docker
           apt-get install openssh-server
           ls -a /
           chmod +x ./test.sh
