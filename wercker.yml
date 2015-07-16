@@ -13,7 +13,7 @@ build:
     - script:
           name: start
           code: |
-            /docker-entrypoint.sh
+            /docker-entrypoint.sh postgres
             su - postgres -c 'postgres'
     - script:
       name: test db
