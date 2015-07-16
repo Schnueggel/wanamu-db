@@ -8,10 +8,7 @@ build:
       name: make dirs
       code: |
         echo $PG_MAJOR
-        ls -a /var/lib
         mkdir /var/lib/postgresql/dump
-        cp ./scripts/dump.sh /scripts/
-        cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
         ls -a /var/lib
     - script:
           name: start
