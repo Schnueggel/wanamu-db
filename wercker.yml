@@ -23,6 +23,7 @@ deploy:
         code: |
           export
           ls -a $WERCKER_SOURCE_DIR
+          ls -a $WERCKER_CACHE_DIR
           apt-get install openssh-client
           ls -a /
           chmod +x ./test.sh
