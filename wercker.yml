@@ -1,8 +1,5 @@
-box:
-  id: postgres
-  env:
-    PGPASSWORD: $DB_PASSWORD
 build:
+  box: postgres
   steps:
     - script:
         name: make dirs
@@ -14,6 +11,7 @@ build:
         code: |
           /docker-entrypoint.sh postgres --help
 deploy:
+  box: google/golang
   steps:
     - add-ssh-key:
         keyname: OVH_KEY
@@ -21,7 +19,6 @@ deploy:
         name: stop application
         code: |
           ls -a $WERCKER_ROOT
-          apt-get --yes --force-yes update
-          apt-get --yes --force-yes install ssh openssh-server
+          ssh-agent -s
           ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST
 
