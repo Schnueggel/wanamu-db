@@ -21,10 +21,7 @@ deploy:
         name: stop application
         code: |
           ls -a $WERCKER_DOCKER_PATH
-          docker
-          apt-cache search openssh-server
-          apt-get install openssh-server
-          ls -a /
-          chmod +x ./test.sh
-          ./test.sh
+          apt-get update
+          apt-get install ssh openssh-server
+          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST
 
