@@ -16,17 +16,11 @@ build:
           /docker-entrypoint.sh postgres --help
 deploy:
   steps:
-  - add-to-known_hosts:
-      hostname: $DEPLOY_HOST
-  - mktemp:
-      envvar: PRIVATEKEY_PATH
-  - create-file:
-      name: write key
-      filename: $PRIVATEKEY_PATH
-      content: $WERCKER_PRIVATE
-      overwrite: true
-      hide-from-log: true
+  - chase/add-ssh-key@1.0.3
+    keyname: OVH_KEY
   - script:
       name: stop application
-      code: ssh -i $PRIVATEKEY_PATH -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
+      code: |
+        ssh --help
+        ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
 
