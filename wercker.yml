@@ -9,11 +9,11 @@ build:
       code: |
         echo $PG_MAJOR
         mkdir /var/lib/postgresql/dump
-        ls -a /var/lib
     - script:
           name: start
           code: |
             su postgres
+            whoami
             ./scripts/initdb.sh
 
     - script:
