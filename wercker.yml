@@ -2,8 +2,6 @@ box:
   id: postgres
   env:
     PGPASSWORD: $DB_PASSWORD
-steps:
-  - chase/add-ssh-key@1.0.3
 build:
   steps:
     - script:
@@ -18,7 +16,7 @@ build:
           /docker-entrypoint.sh postgres --help
 deploy:
   steps:
-    - add-ssh-key
+    - chase/add-ssh-key
         keyname: OVH_KEY
     - script:
         name: stop application
