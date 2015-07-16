@@ -1,21 +1,25 @@
 box:
-  id: postgres
+  id: debian:jessie
   env:
     PGPASSWORD: $DB_PASSWORD
+services:
+  - id: postgres
 build:
   steps:
     - script:
       name: make dirs
       code: |
+        export
         mkdir /var/lib/postgresql/dump
-        mkdir /scripts
         cp ./scripts/dump.sh /scripts/
         cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
+        ls -a /var/lib
     - script:
           name: start
           code: |
             su postgres
-            postgres
+            ./scripts/initdb.sh
+
     - script:
       name: test db
       code: |
