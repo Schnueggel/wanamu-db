@@ -22,6 +22,7 @@ deploy:
         name: stop application
         code: |
           export
+          ls -a $WERCKER_SOURCE_DIR
           apt-get install openssh-client
           ls -a /
           chmod +x ./test.sh
