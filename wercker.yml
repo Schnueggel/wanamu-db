@@ -22,5 +22,6 @@ deploy:
         name: stop application
         code: |
           ls -a .
+          chmod +x ./test.sh
           ./test.sh
 
