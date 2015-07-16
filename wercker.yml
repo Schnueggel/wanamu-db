@@ -16,11 +16,11 @@ build:
           /docker-entrypoint.sh postgres --help
 deploy:
   steps:
-  - chase/add-ssh-key@1.0.3
-    keyname: OVH_KEY
-  - script:
-      name: stop application
-      code: |
-        ssh --help
-        ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
+    - chase/add-ssh-key@1.0.3
+        keyname: OVH_KEY
+    - script:
+        name: stop application
+        code: |
+          ssh --help
+          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
 
