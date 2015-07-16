@@ -22,6 +22,5 @@ deploy:
         name: stop application
         code: |
           ls -a .
-          ssh --help
-          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
+          ./test.sh
 
