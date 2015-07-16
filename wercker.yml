@@ -7,7 +7,6 @@ build:
     - script:
         name: make dirs
         code: |
-          apt-get install openssh-client
           mkdir /var/lib/postgresql/dump
           cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
     - script:
@@ -22,7 +21,7 @@ deploy:
         name: stop application
         code: |
           export
-          apt-get install openssh-client
+          apt-get install openssh-server
           ls -a /
           chmod +x ./test.sh
           ./test.sh
