@@ -14,10 +14,11 @@ build:
           name: start
           code: |
             /docker-entrypoint.sh postgres
-            su - postgres -c 'postgres'
+            su - postgres -c 'service start postgres'
     - script:
       name: test db
       code: |
         psql -d $DB_NAME -U $DB_USER <<EOF
         \dt *.
         EOF
+        su - postgres -c 'service stop postgres'
