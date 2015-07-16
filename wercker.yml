@@ -22,7 +22,6 @@ deploy:
         name: stop application
         code: |
           ls -a $WERCKER_OUTPUT_DIR
-          apt-get install ssh
           ssh --help
           ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
 
