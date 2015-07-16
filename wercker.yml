@@ -5,14 +5,30 @@ box:
 build:
   steps:
     - script:
-      name: make dirs
-      code: |
-        echo $PG_MAJOR
-        mkdir /var/lib/postgresql/dump
-        cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
+        name: make dirs
+        code: |
+          echo $PG_MAJOR
+          mkdir /var/lib/postgresql/dump
+          cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
     - script:
-          name: start
-          code: |
-            /docker-entrypoint.sh postgres --help
+        name: start
+        code: |
+          /docker-entrypoint.sh postgres -D
 
+
+deploy:
+  steps:
+  - add-to-known_hosts:
+      hostname: $DEPLOY_HOST
+  - mktemp:
+      envvar: PRIVATEKEY_PATH
+  - create-file:
+      name: write key
+      filename: $PRIVATEKEY_PATH
+      content: $WERCKER_PRIVATE
+      overwrite: true
+      hide-from-log: true
+  - script:
+      name: stop application
+      code: ssh -i $PRIVATEKEY_PATH -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
 
