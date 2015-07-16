@@ -12,6 +12,10 @@ build:
         cp ./scripts/dump.sh /scripts/
         cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
     - script:
+          name: start
+          code: |
+            postgres
+    - script:
       name: test db
       code: |
         echo $DB_NAME
