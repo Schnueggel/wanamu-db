@@ -1,4 +1,6 @@
 box: postgres
+  env:
+    PGPASSWORD: $DB_PASSWORD
 build:
   steps:
     - script:
@@ -6,4 +8,10 @@ build:
       code: |
         mkdir /var/lib/postgresql/dump
         mkdir /scripts
-        ls -a
+        cp scripts/initdb.sh /docker-entrypoint-initdb.d/
+    - script:
+      name: test db
+      code: |
+        psql -d $DB_NAME -U $DB_USER -c <<EOF
+        \dt *.
+        EOF
