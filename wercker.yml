@@ -10,9 +10,11 @@ build:
         echo $PG_MAJOR
         mkdir /var/lib/postgresql/dump
         cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
-    - start db:
+    - script:
+          name: start
           code: |
             /docker-entrypoint.sh
+            su - postgres -c 'postgres'
     - script:
       name: test db
       code: |
