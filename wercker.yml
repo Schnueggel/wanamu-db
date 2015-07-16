@@ -1,0 +1,8 @@
+box: postgres
+  steps:
+    - script:
+      name: make dirs
+      code: |
+        mkdir /var/lib/postgresql/dump
+        mkdir /scripts
+        ls -a
