@@ -30,5 +30,5 @@ deploy:
           cd ~
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           echo "pulling $WANAMU_REGISTRY/$WANAMU_DB_REPO"
-          docker pull $WANAMU_REGISTRY/$WANAMU_DB_REPO
+          docker pull $WANAMU_REGISTRY/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
           EOF
