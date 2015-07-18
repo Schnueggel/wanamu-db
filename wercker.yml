@@ -31,5 +31,4 @@ deploy:
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           export
           docker pull $WANAMU_REGISTRY/$WANAMU_DB_REPO
-          docker run -d --rm -v "$W
           EOF
