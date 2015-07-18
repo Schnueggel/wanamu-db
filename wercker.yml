@@ -28,6 +28,6 @@ deploy:
           apt-get --yes --force-yes install openssh-client
           ssh-agent -s
           ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST <<EOF
-          docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY_USER
+          docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           docker pull $WANAMU_REGISTRY/$WANAMU_DB_REPO
           EOF
