@@ -27,4 +27,4 @@ deploy:
           export
           apt-get --yes --force-yes install openssh-client
           ssh-agent -s
-          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST sudo touch ~/test
+          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
