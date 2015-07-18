@@ -9,6 +9,8 @@ wanamudb:
     POSTGRES_USER:
     DB_USER:
     DB_PASS:
+    WANAMUDB_DATA:
+    WANAMU_DB_DUMP:
   volumes:
-    - /var/lib/postgresql/data:/var/lib/postgresql/data
-    - /var/lib/postgresql/dumps:/var/lib/postgresql/dumps
+    - $WANAMU_DB_DATA:/var/lib/postgresql/data
+    - $WANAMU_DB_DUMP:/var/lib/postgresql/dumps

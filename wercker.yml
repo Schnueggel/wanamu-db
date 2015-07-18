@@ -10,6 +10,7 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
+          cp ./install.sh $WERCKER_OUTPUT_DIR
 deploy:
   box: ubuntu:latest
   steps:
@@ -21,11 +22,18 @@ deploy:
         registry: $WANAMU_REGISTRY
     - add-ssh-key:
         keyname: OVH_KEY
+    -script:
+        name: install ssh
+        code: |
+          apt-get --yes --force-yes install ssh openssh-client
+          ssh-agent -s
+    -script:
+        name: scp install
+        code: |
+          scp $WERCKER_OUTPUT_DIR/install.sh $WANAMU_REGISTRY_USER@api.wanamu.com/~
     - script:
         name: deploy the image
         code: |
-          apt-get --yes --force-yes install openssh-client
-          ssh-agent -s
           ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST <<EOF
           cd ~
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
