@@ -22,7 +22,7 @@ deploy:
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
-        name: stop application
+        name: deploy image
         code: |
           export
           apt-get --yes --force-yes install openssh-client
