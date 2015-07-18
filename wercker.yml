@@ -14,7 +14,7 @@ deploy:
   box: ubuntu:latest
   steps:
     - internal/docker-push:
-        username: wercker
+        username: $WANAMU_REGISTRY_USER
         password: wercker77
         repository: wanamu/db
         tag: $WERCKER_GIT_COMMIT
