@@ -10,7 +10,7 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
-          cp ./install.sh $WERCKER_OUTPUT_DIR
+          cp ./install.sh $WERCKER_OUTPUT_DIR/
           ls /
 deploy:
   box: ubuntu:latest
