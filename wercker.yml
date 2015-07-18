@@ -15,7 +15,7 @@ deploy:
   steps:
     - internal/docker-push:
         username: $WANAMU_REGISTRY_USER
-        password: wercker77
+        password: $WANAMU_REGISTRY_PASSWORD
         repository: $WANAMU_DB_REPO
         tag: $WERCKER_GIT_COMMIT
         registry: $WANAMU_REGISTRY
