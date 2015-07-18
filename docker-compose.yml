@@ -1,0 +1,14 @@
+wanamudb:
+  restart: always
+  image: "api.wanamu.com:5043/wanamudb"
+  ports:
+    - 5432:5432
+  environment:
+    DB_NAME: wanamu
+    POSTGRES_PASSWORD:
+    POSTGRES_USER:
+    DB_USER:
+    DB_PASS:
+  volumes:
+    - /var/lib/postgresql/data:/var/lib/postgresql/data
+    - /var/lib/postgresql/dumps:/var/lib/postgresql/dumps

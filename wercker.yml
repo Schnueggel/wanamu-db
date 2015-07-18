@@ -24,10 +24,12 @@ deploy:
     - script:
         name: deploy image
         code: |
-          export
           apt-get --yes --force-yes install openssh-client
           ssh-agent -s
           ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST <<EOF
+          cd ~
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
+          export
           docker pull $WANAMU_REGISTRY/$WANAMU_DB_REPO
+          docker run -d --rm -v "$W
           EOF
