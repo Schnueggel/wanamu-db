@@ -6,13 +6,19 @@ build:
         code: |
           mkdir /var/lib/postgresql/dump
           cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
-    - script:
-        name: start
-        code: |
-          /docker-entrypoint.sh postgres --help
+          rm -rf /scripts
+          cp -r ./scripts /scripts
+          rm -rf /changelogs
+          cp -r ./changelogs /changelogs
 deploy:
   box: ubuntu:latest
   steps:
+    - internal/docker-push:
+        username: wercker
+        password: wercker77
+        repository: wanamu/db
+        tag: $WERCKER_GIT_COMMIT
+        registry: $WANAMU_REGISTRY
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
@@ -21,5 +27,4 @@ deploy:
           export
           apt-get --yes --force-yes install openssh-client
           ssh-agent -s
-          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST touch ~/test
-
+          ssh -l wercker -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST sudo touch ~/test

@@ -6,11 +6,16 @@ wudbuser=$3
 wudpass=$4
 version=$5
 
+#############################################################################################################
+# Help text
+#############################################################################################################
 help='
   If the Version of a container exist we try to restart and stop an old container if its running
-  Usage: [postgres super user] [postgres super password] [wanamudb user] [wanamudb password] [version]
+  Usage:
 
-  Example:./start.sh postgres postgres wanamu wanamu 1
+  start.sh [postgres super user] [postgres super password] [wanamudb user] [wanamudb password] [version]
+
+  Example:./start.sh superuser superpassword dbuser dbpassword 1
 
   To start the current container if one exist
 
