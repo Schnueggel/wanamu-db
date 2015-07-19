@@ -1,15 +1,24 @@
-box: marvin/docker@0.0.3
 build:
+  box: postgres
   steps:
     - script:
         name: make dirs
         code: |
-          docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
-          docker build -t $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO .
-          docker tag $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO:latest
-          docker push $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO:latest
+          mkdir /var/lib/postgresql/dump
+          cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
+          rm -rf /scripts
+          cp -r ./scripts /scripts
+          rm -rf /changelogs
+          cp -r ./changelogs /changelogs
 deploy:
+  box: ubuntu:latest
   steps:
+    - internal/docker-push:
+        username: $WANAMU_REGISTRY_USER
+        password: $WANAMU_REGISTRY_PASSWORD
+        repository: $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
+        tag: latest
+        registry: $WANAMU_REGISTRY
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
