@@ -4,12 +4,6 @@ build:
     - script:
         name: make dirs
         code: |
-          mkdir /var/lib/postgresql/dump
-          cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
-          rm -rf /scripts
-          cp -r ./scripts /scripts
-          rm -rf /changelogs
-          cp -r ./changelogs /changelogs
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           docker build -t $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO .
           docker tag $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO:latest
