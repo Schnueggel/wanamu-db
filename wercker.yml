@@ -1,5 +1,5 @@
 build:
-  box: postgres
+  box: iadknet / ssh-client-light
   steps:
     - script:
         name: make dirs
