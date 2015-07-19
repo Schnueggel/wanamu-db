@@ -26,14 +26,12 @@ deploy:
     - script:
         name: install ssh
         code: |
-          ls $WERCKER_ROOT
-          ls /pipeline/source/app
+          ls -R /pipeline
           apt-get --yes --force-yes install ssh openssh-client
           ssh-agent -s
     - script:
         name: scp install
         code: |
-          ls $WERCKER_OUTPUT_DIR
           scp $WERCKER_ROOT/install.sh $WANAMU_REGISTRY_USER@api.wanamu.com/~
     - script:
         name: deploy the image
