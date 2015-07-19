@@ -1,5 +1,5 @@
+box: marvin/docker@0.0.3
 build:
-  box: postgres
   steps:
     - script:
         name: make dirs
@@ -10,15 +10,12 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
+          docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
+          docker build -t $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO .
+          docker tag $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO:latest
+          docker push $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO:latest
 deploy:
-  box: ubuntu:latest
   steps:
-    - internal/docker-push:
-        username: wercker
-        password: wercker77
-        repository: wercker/wanamudb
-        tag: latest
-        registry: https://api.wanamu.com:5043
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
