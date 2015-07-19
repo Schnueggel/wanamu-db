@@ -16,7 +16,8 @@ deploy:
     - internal/docker-push:
         username: $WANAMU_REGISTRY_USER
         password: $WANAMU_REGISTRY_PASSWORD
-        repository: $WANAMU_DB_REPO:latest
+        repository: $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
+        tag: thefirst
         registry: $WANAMU_REGISTRY
     - add-ssh-key:
         keyname: OVH_KEY
@@ -37,5 +38,5 @@ deploy:
           cd ~
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           echo "pulling $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO"
-          docker pull $WANAMU_REGISTRY_URL/$WANAMU_DB_REPO
+          docker pull $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
           EOF
