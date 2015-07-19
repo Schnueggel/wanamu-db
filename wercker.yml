@@ -16,7 +16,7 @@ deploy:
     - internal/docker-push:
         username: $WANAMU_REGISTRY_USER
         password: $WANAMU_REGISTRY_PASSWORD
-        repository: $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
+        repository: test/$WANAMU_DB_REPO
         tag: thefirst2
         registry: $WANAMU_REGISTRY
     - add-ssh-key:
