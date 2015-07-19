@@ -10,7 +10,6 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
-
 deploy:
   box: ubuntu:latest
   steps:
