@@ -36,7 +36,7 @@ deploy:
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           docker pull $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
           cd ~
-          source ./bashrc
-          chmod u+x ./install.sh
+          source /home/wercker/.bashrc
+          chmod u+x /home/wercker/install.sh
           sudo ./install.sh
           EOF
