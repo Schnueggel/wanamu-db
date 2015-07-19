@@ -10,8 +10,8 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
-          ls -lh /pipeline
-          cp ./install.sh /pipeline/source/app
+          ls -R /pipeline
+
 deploy:
   box: ubuntu:latest
   steps:
