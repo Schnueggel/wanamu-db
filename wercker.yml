@@ -24,7 +24,6 @@ deploy:
     - script:
         name: install ssh
         code: |
-          ls -R /pipeline
           apt-get --yes --force-yes install ssh openssh-client
           ssh-agent -s
     - script:
