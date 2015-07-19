@@ -11,7 +11,7 @@ build:
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
 deploy:
-  box: ubuntu:latest
+  box: golio/ubuntu:latest
   steps:
     - internal/docker-push:
         username: $WANAMU_REGISTRY_USER
@@ -24,7 +24,6 @@ deploy:
     - script:
         name: install ssh
         code: |
-          apt-get --yes --force-yes install ssh openssh-client
           ssh-agent -s
     - script:
         name: scp install
