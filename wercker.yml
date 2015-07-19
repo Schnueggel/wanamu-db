@@ -38,6 +38,7 @@ deploy:
           whoami
           docker pull $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
           cd ~
+          ls
           chmod u+x ./install.sh
           sudo ./install.sh
           EOF
