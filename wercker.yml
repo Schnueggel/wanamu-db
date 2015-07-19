@@ -35,8 +35,8 @@ deploy:
           ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST <<EOF
           docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
           docker pull $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
-          cd ~
           source /home/wercker/.bashrc
+          export
           chmod u+x /home/wercker/install.sh
-          sudo ./install.sh
+          sudo /home/wercker/install.sh
           EOF
