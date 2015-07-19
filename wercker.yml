@@ -1,11 +1,10 @@
 build:
-  box: ubuntu:latest
+  box: postgres
   steps:
     - script:
         name: make dirs
         code: |
-          mkdir -p /var/lib/postgresql/dump
-          mkdir -p /docker-entrypoint-initdb.d
+          mkdir /var/lib/postgresql/dump
           cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
           rm -rf /scripts
           cp -r ./scripts /scripts
