@@ -32,7 +32,7 @@ deploy:
     - script:
         name: scp install
         code: |
-          scp $WERCKER_ROOT/install.sh $WANAMU_REGISTRY_USER@api.wanamu.com/~
+          scp $WERCKER_ROOT/install.sh $WANAMU_REGISTRY_USER@api.wanamu.com/home/$WANAMU_REGISTRY_USER/install.sh
     - script:
         name: deploy the image
         code: |
