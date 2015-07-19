@@ -1,5 +1,5 @@
 build:
-  box: iadknet/ssh-client-light
+  box: ubuntu:latest
   steps:
     - script:
         name: make dirs
