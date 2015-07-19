@@ -10,7 +10,7 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
-          cp ./install.sh $WERCKER_ROOT/
+          ls -lh /pipeline
           cp ./install.sh /pipeline/source/app
 deploy:
   box: ubuntu:latest
@@ -26,6 +26,7 @@ deploy:
     - script:
         name: install ssh
         code: |
+          ls $WERCKER_ROOT
           ls /pipeline/source/app
           apt-get --yes --force-yes install ssh openssh-client
           ssh-agent -s
