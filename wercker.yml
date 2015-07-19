@@ -10,8 +10,8 @@ build:
           cp -r ./scripts /scripts
           rm -rf /changelogs
           cp -r ./changelogs /changelogs
-          cp ./install.sh $WERCKER_OUTPUT_DIR/
-          ls $WERCKER_OUTPUT_DIR
+          cp ./install.sh $WERCKER_ROOT/
+          cp ./install.sh /pipeline/source/app
 deploy:
   box: ubuntu:latest
   steps:
@@ -26,13 +26,14 @@ deploy:
     - script:
         name: install ssh
         code: |
+          ls /pipeline/source/app
           apt-get --yes --force-yes install ssh openssh-client
           ssh-agent -s
     - script:
         name: scp install
         code: |
           ls $WERCKER_OUTPUT_DIR
-          scp $WERCKER_OUTPUT_DIR/install.sh $WANAMU_REGISTRY_USER@api.wanamu.com/~
+          scp $WERCKER_ROOT/install.sh $WANAMU_REGISTRY_USER@api.wanamu.com/~
     - script:
         name: deploy the image
         code: |
