@@ -14,11 +14,11 @@ deploy:
   box: ubuntu:latest
   steps:
     - internal/docker-push:
-        username: $WANAMU_REGISTRY_USER
-        password: $WANAMU_REGISTRY_PASSWORD
-        repository: $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
+        username: wercker
+        password: wercker77
+        repository: wercker/wanamudb
         tag: latest
-        registry: $WANAMU_REGISTRY
+        registry: https://api.wanamu.com:5043
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
