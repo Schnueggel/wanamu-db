@@ -37,6 +37,5 @@ deploy:
           docker pull $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
           cd ~
           chmod u+x ./install.sh
-          ./install.sh
-          docker-compose up -d
+          sudo ./install.sh
           EOF

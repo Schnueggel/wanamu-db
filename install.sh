@@ -22,3 +22,4 @@ wanamudb:
 
 EOF
 
+docker-compose up -d
