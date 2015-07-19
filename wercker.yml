@@ -14,11 +14,11 @@ deploy:
   box: ubuntu:latest
   steps:
     - internal/docker-push:
-        username: golio
+        username: $WANAMU_REGISTRY_USER
         password: $WANAMU_REGISTRY_PASSWORD
-        repository: golio/test
+        repository: $WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
         tag: latest
-        registry: https://registry.hub.docker.com
+        registry: $WANAMU_REGISTRY
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
