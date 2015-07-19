@@ -5,6 +5,7 @@ build:
         name: make dirs
         code: |
           mkdir -p /var/lib/postgresql/dump
+          mkdir -p /docker-entrypoint-initdb.d
           cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
           rm -rf /scripts
           cp -r ./scripts /scripts
