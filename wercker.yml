@@ -1,5 +1,5 @@
 build:
-  box: iadknet / ssh-client-light
+  box: iadknet/ssh-client-light
   steps:
     - script:
         name: make dirs
