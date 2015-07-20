@@ -9,19 +9,8 @@ wanamudb:
     POSTGRES_USER:
     DB_USER:
     DB_PASS:
-    WANAMUDB_DATA:
+    WANAMU_DB_DATA:
     WANAMU_DB_DUMP:
   volumes:
-    - $WANAMU_DB_DATA:/var/lib/postgresql/data
-    - $WANAMU_DB_DUMP:/var/lib/postgresql/dump
-liquibase:
-  image: "api.wanamu.com:5043/liquibase"
-  links:
-    - wanamudb:db
-  environment:
-    - LB_CHANGELOG_FILE: /changelogs/$changelog
-    - LB_DB_NAME: wanamu
-  entrypoint: /scripts/liquibase_command.sh
-  cmd: update
-  volumes:
-    - /changelogs:/changelogs
+    - /var/lib/postgresql/data:/var/lib/postgresql/data
+    - /var/lib/postgresql/dump:/var/lib/postgresql/dump
