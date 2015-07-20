@@ -16,8 +16,8 @@ deploy:
     - script:
         name: deploy the image
         code: |
-          ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
+          ssh -l $DEPLOY_USER -o UserKnownHostsFile=/dev/null -tt -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
           export
           sudo git pull
-          docker-compose up -d
+          sudo docker-compose up -d
           EOF
