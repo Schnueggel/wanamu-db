@@ -14,7 +14,7 @@ deploy:
         code: |
           ssh-agent -s
     - script:
-        name: deploy the image
+        name: Deploy
         code: |
           ssh -l $DEPLOY_USER -o UserKnownHostsFile=/dev/null -tt -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
           export
