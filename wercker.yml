@@ -2,41 +2,23 @@ build:
   box: postgres
   steps:
     - script:
-        name: make dirs
+        name: Pseudo
         code: |
-          mkdir /var/lib/postgresql/dump
-          cp ./scripts/initdb.sh /docker-entrypoint-initdb.d/
-          rm -rf /scripts
-          cp -r ./scripts /scripts
-          rm -rf /changelogs
-          cp -r ./changelogs /changelogs
+          export
 deploy:
   box: golio/ubuntu:latest
   steps:
-    - internal/docker-push:
-        username: $WANAMU_REGISTRY_USER
-        password: $WANAMU_REGISTRY_PASSWORD
-        repository: $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
-        tag: latest
-        registry: $WANAMU_REGISTRY
     - add-ssh-key:
         keyname: OVH_KEY
     - script:
         name: install ssh
-        code: |
+        code: |0
           ssh-agent -s
-    - script:
-        name: scp install
-        code: |
-          scp  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $WERCKER_ROOT/install.sh $WANAMU_REGISTRY_USER@$DEPLOY_HOST:/home/$WANAMU_REGISTRY_USER/
     - script:
         name: deploy the image
         code: |
-          ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST <<EOF
-          docker login -u $WANAMU_REGISTRY_USER -p $WANAMU_REGISTRY_PASSWORD $WANAMU_REGISTRY
-          docker pull $WANAMU_REGISTRY_URL/$WANAMU_REGISTRY_USER/$WANAMU_DB_REPO
-          source /home/wercker/.bashrc
-          export
-          chmod u+x /home/wercker/install.sh
-          sudo /home/wercker/install.sh
+          ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
+          sudo git remote update
+          sudo git pull
+          docker-compose
           EOF

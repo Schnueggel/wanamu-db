@@ -1,6 +1,6 @@
 wanamudb:
   restart: always
-  image: "api.wanamu.com:5043/wanamudb"
+  build: .
   ports:
     - 5432:5432
   environment:
@@ -13,4 +13,15 @@ wanamudb:
     WANAMU_DB_DUMP:
   volumes:
     - $WANAMU_DB_DATA:/var/lib/postgresql/data
-    - $WANAMU_DB_DUMP:/var/lib/postgresql/dumps
+    - $WANAMU_DB_DUMP:/var/lib/postgresql/dump
+liquibase:
+  image: "api.wanamu.com:5043/liquibase"
+  links:
+    - wanamudb:db
+  environment:
+    - LB_CHANGELOG_FILE: /changelogs/$changelog
+    - LB_DB_NAME: wanamu
+  entrypoint: /scripts/liquibase_command.sh
+  cmd: update
+  volumes:
+    - /changelogs:/changelogs
