@@ -11,7 +11,7 @@ deploy:
         keyname: OVH_KEY
     - script:
         name: install ssh
-        code: |0
+        code: |
           ssh-agent -s
     - script:
         name: deploy the image
