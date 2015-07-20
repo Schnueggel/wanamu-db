@@ -1,12 +1,11 @@
+box: golio/ubuntu:latest
 build:
-  box: postgres
   steps:
     - script:
         name: Pseudo
         code: |
           export
 deploy:
-  box: golio/ubuntu:latest
   steps:
     - add-ssh-key:
         keyname: OVH_KEY
@@ -18,7 +17,7 @@ deploy:
         name: deploy the image
         code: |
           ssh -l wercker -o UserKnownHostsFile=/dev/null -t -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
-          sudo git remote update
+          export
           sudo git pull
-          docker-compose
+          docker-compose up -d
           EOF
