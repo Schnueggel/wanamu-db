@@ -10,7 +10,6 @@ wanamudb:
     WU_DB_USER:
     WU_DB_PASS:
     WU_DB_DATA:
-    WU_DB_DUMP:
   volumes:
     - /var/lib/postgresql/data:/var/lib/postgresql/data
     - ${$WU_DB_DUMP}:/var/lib/postgresql/dump
