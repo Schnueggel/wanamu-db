@@ -1,3 +1,7 @@
+wanamudbmigration:
+  build: ../wanamu-db-migration
+  links:
+    - wanamudb:db
 wanamudb:
   restart: always
   build: .
@@ -13,7 +17,3 @@ wanamudb:
   volumes:
     - /var/lib/postgresql/data:/var/lib/postgresql/data
     - ${$WU_DB_DUMP}:/var/lib/postgresql/dump
-wanamudbmigration:
-  build: ../wanamu-db-migration
-  links:
-    - wanamudb:db
