@@ -14,3 +14,7 @@ wanamudb:
   volumes:
     - /var/lib/postgresql/data:/var/lib/postgresql/data
     - /var/lib/postgresql/dump:/var/lib/postgresql/dump
+wanamudbmigration:
+  build: ../wanamu-db-migration
+  links:
+    - wanamudb:db
