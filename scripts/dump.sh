@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-: ${DB_NAME:=wanamu}
+: ${WU_DB_NAME:=wanamu}
 : ${POSTGRES_USER?:="Postgres super user"}
 : ${POSTGRES_PASSWORD?:="Postgres super password"}
-: ${PGDUMPS:=/var/pgdumps}
+: ${WU_DB_DUMP:=/var/pgdumps}
 
-chown -R postgres "$PGDUMPS"
+chown -R postgres "$WU_DB_DUMP"
 
 if [ $# -ne 1 ]
   then
@@ -14,4 +14,4 @@ if [ $# -ne 1 ]
     exit 0
 fi
 
-gosu postgres pg_dump $DB_NAME -f "$PGDUMPS/$1"
+gosu postgres pg_dump $WU_DB_NAME -f "$WU_DB_DUMP/$1"
