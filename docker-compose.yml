@@ -17,4 +17,3 @@ wanamudb:
   volumes:
     - /var/lib/postgresql/data:/var/lib/postgresql/data
     - ${$WU_DB_DUMP}:/var/lib/postgresql/dump
-  entrypoint: env
