@@ -12,7 +12,7 @@ wanamudb:
     - POSTGRES_PASSWORD
     - POSTGRES_USER
     - WU_DB_USER
-    - WU_DB_PASS
+    - WU_DB_PASSWORD
     - WU_DB_DATA
   volumes:
     - /var/lib/postgresql/data:/var/lib/postgresql/data
