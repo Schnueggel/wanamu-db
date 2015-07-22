@@ -16,7 +16,7 @@ deploy:
     - script:
         name: Deploy
         code: |
-          ssh -l $DEPLOY_USER -o UserKnownHostsFile=/dev/null -f -tt -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
+          ssh -l $DEPLOY_USER -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
           sudo ./dockerinstall.sh $WERCKER_GIT_REPOSITORY
           sudo ./dockerinstall.sh $WU_DB_MIGRATION_REPO
           cd ./wanamu-db
