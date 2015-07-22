@@ -24,7 +24,7 @@ deploy:
           sudo -E docker-compose up -d
           sudo -E docker-compose run wanamudbmigration
           exit
-          echo hund
+          exit
           EOF
   after-steps:
     - slack-notifier:
