@@ -17,7 +17,7 @@ deploy:
         name: Deploy
         code: |
           ssh -l $DEPLOY_USER -o UserKnownHostsFile=/dev/null -tt -o StrictHostKeyChecking=no $DEPLOY_HOST /bin/bash -e <<EOF
-          sudo ./dockerinstall.sh $WERCKER_GIT_REPOSITORY $WERCKER_GIT_BRANCH
+          sudo ./dockerinstall.sh git@$WERCKER_GIT_DOMAIN:$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY.git $WERCKER_GIT_BRANCH
           sudo ./dockerinstall.sh $WU_DB_MIGRATION_REPO $WERCKER_GIT_BRANCH
           cd ./$WERCKER_GIT_REPOSITORY
           sudo -E docker-compose build
