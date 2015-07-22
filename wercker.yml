@@ -22,6 +22,8 @@ deploy:
           cd ./$WERCKER_GIT_REPOSITORY
           sudo -E docker-compose build
           sudo -E docker-compose up -d
+          echo hund
+          logout
           sudo -E docker-compose run wanamudbmigration
           logout
           exit
