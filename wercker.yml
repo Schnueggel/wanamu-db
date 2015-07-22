@@ -20,9 +20,9 @@ deploy:
           sudo ./dockerinstall.sh $WERCKER_GIT_REPOSITORY
           sudo ./dockerinstall.sh $WU_DB_MIGRATION_REPO
           cd ./wanamu-db
-          sudo docker-compose build
-          sudo docker-compose up -d
-          sudo docker-compose run wanamudbmigration
+          sudo -E docker-compose build
+          sudo -E docker-compose up -d
+          sudo -E docker-compose run wanamudbmigration
           exit 0
           EOF
   after-steps:
