@@ -1,5 +1,7 @@
 wanamudbmigration:
   build: ../wanamu-db-migration
+  environment:
+    - LB_DB_NAME=wanamu
   links:
     - wanamudb:db
 wanamudb:
