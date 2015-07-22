@@ -23,9 +23,7 @@ deploy:
           sudo -E docker-compose build
           sudo -E docker-compose up -d
           sudo -E docker-compose run wanamudbmigration
-          echo hund
-          ~.
-          ~#
+          logout
           exit
           EOF
   after-steps:
