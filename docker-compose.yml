@@ -1,21 +1,8 @@
-wanamudbmigration:
-  build: ../wanamu-db-migration
-  environment:
-    - LB_DB_NAME=wanamu
-  links:
-    - wanamudb:db
 wanamudb:
   restart: always
   build: .
-  ports:
-    - 5432:5432
-  environment:
-    - WU_DB_NAME=wanamu
-    - POSTGRES_PASSWORD
-    - POSTGRES_USER
-    - WU_DB_USER
-    - WU_DB_PASSWORD
-    - WU_DB_DATA
+  env_file:
+    - ./wanamu-db.env
   volumes:
     - /var/lib/postgresql/data:/var/lib/postgresql/data
-    - ${$WU_DB_DUMP}:/var/lib/postgresql/dump
+    - /var/lib/postgresql/dump:/var/lib/postgresql/dump
