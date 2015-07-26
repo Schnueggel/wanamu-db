@@ -1,6 +1,8 @@
 wanamudb:
   restart: always
   build: .
+  ports:
+    5432:5432
   env_file:
     - ./wanamu-db.env
   volumes:
