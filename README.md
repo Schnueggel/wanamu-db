@@ -17,11 +17,14 @@ To update the scheme of the wanamu db change the changelog1.xml file or add a ne
 The use our docker-liquibase image to update the database
 
 see:
-
-https://bitbucket.org/schnueggel/docker-liquibase
+<https://bitbucket.org/schnueggel/docker-liquibase>
 # Dump data
 
 Use the dump script to make a data dump
 # See
 
-Postgres Docker - https://registry.hub.docker.com/_/postgres/
+Postgres Docker - <https://registry.hub.docker.com/_/postgres>
+
+# Docker Environmet
+
+The Docker Environment file wanamu-db.env will be replaced on the server with the real one. The one here can be used for local deployment
