@@ -1,8 +1,8 @@
 #!/bin/bash
 
-: ${WU_DB_USER:=wanamu}
-: ${WU_DB_PASSWORD:=wanamu}
-: ${WU_DB_NAME:=wanamu}
+: ${WU_DB_USER?"Needed"}
+: ${WU_DB_PASSWORD?"Needed"}
+: ${WU_DB_NAME?"Needed"}
 : ${DB_ENCODING:=UTF-8}
 
 { gosu postgres postgres --single -jE <<-EOSQL
